@@ -1,10 +1,10 @@
-# How to create wpf nested datagrid view (master details view) in wpf?
+# How to Create WPF Nested DataGrid View (Master Details View) in WPF?
 
 ## About the sample
 
 This example illustrates how to create wpf nested datagrid view (master details view)?
 
-[SfDataGrid](https://www.syncfusion.com/wpf-ui-controls/datagrid) provides support to represent the hierarchical data in the form of nested tables using Master-Details View. You can expand or collapse the nested tables by using an expander in a row or programmatically.
+[WPF DataGrid](https://www.syncfusion.com/wpf-ui-controls/datagrid) provides support to represent the hierarchical data in the form of nested tables using Master-Details View. You can expand or collapse the nested tables by using an expander in a row or programmatically.
 
 ## Generating Master-Details view from IEnumerable
 Master-Details View’s relation can be generated for the properties of type [IEnumerable](https://msdn.microsoft.com/en-us/library/system.collections.ienumerable.aspx) exists in the underlying data object. 
