@@ -239,6 +239,7 @@ You can hide the expander from the view when corresponding RelationalColumn prop
 
 ![DetailsView_HideEmptyGridViewDefinition](Images/DetailsView_HideEmptyGridViewDefinition.png)
 
+KB article - [How to Create WPF Nested DataGrid View (Master Details View) in WPF?](https://www.syncfusion.com/kb/12369/how-to-create-wpf-nested-datagrid-view-master-details-view-in-wpf)
 
 ## Requirements to run the demo 
 
