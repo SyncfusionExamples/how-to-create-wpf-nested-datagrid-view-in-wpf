@@ -1,36 +1,34 @@
 # How to Create WPF Nested DataGrid View (Master Details View) in WPF?
 
-## About the sample
+This example illustrates how to create wpf nested datagrid view (master details view) in [WPF DataGrid](https://www.syncfusion.com/wpf-controls/datagrid) (SfDataGrid).
 
-This example illustrates how to create wpf nested datagrid view (master details view)?
-
-[WPF DataGrid](https://www.syncfusion.com/wpf-ui-controls/datagrid) provides support to represent the hierarchical data in the form of nested tables using Master-Details View. You can expand or collapse the nested tables by using an expander in a row or programmatically.
+`DataGrid` provides support to represent the hierarchical data in the form of nested tables using Master-Details View. You can expand or collapse the nested tables by using an expander in a row or programmatically.
 
 ## Generating Master-Details view from IEnumerable
-Master-Details View’s relation can be generated for the properties of type [IEnumerable](https://msdn.microsoft.com/en-us/library/system.collections.ienumerable.aspx) exists in the underlying data object. 
+
+Master-Details View's relation can be generated for the properties of type `IEnumerable` exists in the underlying data object. 
 
 ### Auto-generating relations
 
 SfDataGrid can automatically generate relations and inner relations for the IEnumerable type properties in the underlying data object. This can be enabled by setting [SfDataGrid.AutoGenerateRelations](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.SfDataGrid.html#Syncfusion_UI_Xaml_Grid_SfDataGrid_AutoGenerateRelations) to true.
 
-``` Xaml
-
+``` xml
 <syncfusion:SfDataGrid x:Name="dataGrid" 
-                               AutoGenerateColumns="True"
-                               AutoGenerateRelations="True"
-                               ItemsSource="{Binding OrdersDetails}" />
+                    AutoGenerateColumns="True"
+                    AutoGenerateRelations="True"
+                    ItemsSource="{Binding OrdersDetails}" />
 
 ``` 
 
-When relations are auto-generated, you can handle the [SfDataGrid.AutoGeneratingRelations](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.SfDataGrid.html) event to customize or cancel the GridViewDefinition before they are added to the [SfDataGrid.DetailsViewDefinition](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.SfDataGrid.html#Syncfusion_UI_Xaml_Grid_SfDataGrid_DetailsViewDefinition).
+When relations are auto-generated, you can handle the [SfDataGrid.AutoGeneratingRelations](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.SfDataGrid.html#Syncfusion_UI_Xaml_Grid_SfDataGrid_AutoGeneratingRelations) event to customize or cancel the GridViewDefinition before they are added to the [SfDataGrid.DetailsViewDefinition](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.SfDataGrid.html#Syncfusion_UI_Xaml_Grid_SfDataGrid_DetailsViewDefinition).
 
 ### Manually defining Relations
 
-You can define the Master-Details View’s relation manually using [SfDataGrid.DetailsViewDefinition](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.SfDataGrid.html#Syncfusion_UI_Xaml_Grid_SfDataGrid_DetailsViewDefinition), when the [SfDataGrid.AutoGenerateRelations](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.SfDataGrid.html#Syncfusion_UI_Xaml_Grid_SfDataGrid_AutoGenerateRelations) is false.
+You can define the Master-Details View’s relation manually using `SfDataGrid.DetailsViewDefinition`, when the `SfDataGrid.AutoGenerateRelations` is false.
 
-To define Master-Details View relations, create GridViewDefinition and set the name of IEnumerable type property (from data object) to ViewDefinition.RelationalColumn. Then, add the GridViewDefinition to the SfDataGrid.DetailsViewDefinition.
+To define Master-Details View relations, create [GridViewDefinition](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.GridViewDefinition.html) and set the name of IEnumerable type property (from data object) to [ViewDefinition.RelationalColumn](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.ViewDefinition.html#Syncfusion_UI_Xaml_Grid_ViewDefinition_RelationalColumn). Then, add the GridViewDefinition to the `SfDataGrid.DetailsViewDefinition`.
 
-``` Xaml
+``` xml
 
 <syncfusion:SfDataGrid x:Name="dataGrid"
                                AutoGenerateColumns="True"
@@ -48,16 +46,17 @@ To define Master-Details View relations, create GridViewDefinition and set the n
 
 ```
 
-![DetailsView_IEnumerable](Images/DetailsView_IEnumerable.png)
+![Details View loaded with IEnumerable](Images/DetailsViewIEnumerable.png)
 
 ## Generating Master-Details view from DataTable
-Master-Details View’s relation can be generated for DataTable, when [DataRelation](https://msdn.microsoft.com/en-in/library/system.data.datarelation.aspx) is defined between two tables in underlying DataSet.
+
+Master-Details View's relation can be generated for `DataTable`, when `DataRelation` is defined between two tables in underlying `DataSet`.
 
 ### Create the DataTable with relations
-You can create relation between tables using a DataSet as given below. 
+
+You can create relation between tables using a `DataSet` as given below. 
 
 ``` c#
-
 public class ViewModel : NotificationObject
 {
     string connectionString;
@@ -112,33 +111,28 @@ public class ViewModel : NotificationObject
             return null;
     }
 }
-
 ```
 
 ### Auto-generating relations
 
-SfDataGrid will automatically generate relations and inner relations based on relations defined in DataSet. This can be enabled by setting [SfDataGrid.AutoGenerateRelations](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.SfDataGrid.html#Syncfusion_UI_Xaml_Grid_SfDataGrid_AutoGenerateRelations) to true.
+`DataGrid` will automatically generate relations and inner relations based on relations defined in DataSet. This can be enabled by setting [SfDataGrid.AutoGenerateRelations](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.SfDataGrid.html#Syncfusion_UI_Xaml_Grid_SfDataGrid_AutoGenerateRelations) to true.
 
-``` Xaml
-
+``` xml
 <syncfusion:SfDataGrid Name="datagrid"
-                               AutoGenerateRelations="True"
-                               ItemsSource="{Binding DataCollection}" />
-
-
+                        AutoGenerateRelations="True"
+                        ItemsSource="{Binding DataCollection}" />
 ```
 
-
 ### Manually defining Relations
-You can define the Master-Details View’s relation manually using SfDataGrid.DetailsViewDefinition, when the [SfDataGrid.AutoGenerateRelations](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.SfDataGrid.html#Syncfusion_UI_Xaml_Grid_SfDataGrid_AutoGenerateRelations) is false.
 
-To define Master-Details View relations, create GridViewDefinition and set the relation name Supplier_Product to ViewDefinition.RelationalColumn. Then, the GridViewDefinition is added to the SfDataGrid.DetailsViewDefinition collection of parent DataGrid.
+You can define the Master-Details View's relation manually using `SfDataGrid.DetailsViewDefinition`, when the `SfDataGrid.AutoGenerateRelations` is false.
 
-``` Xaml
+To define Master-Details View relations, create GridViewDefinition and set the relation name **Supplier_Product** to `ViewDefinition.RelationalColumn`. Then, the `GridViewDefinition` is added to the `SfDataGrid.DetailsViewDefinition` collection of parent DataGrid.
 
+``` xml
 <syncfusion:SfDataGrid Name="datagrid"
-                               AutoGenerateRelations="False"
-                               ItemsSource="{Binding DataCollection}">
+                        AutoGenerateRelations="False"
+                        ItemsSource="{Binding DataCollection}">
     <syncfusion:SfDataGrid.DetailsViewDefinition>
         <syncfusion:GridViewDefinition RelationalColumn="Supplier_Product">
             <syncfusion:GridViewDefinition.DataGrid>
@@ -147,17 +141,17 @@ To define Master-Details View relations, create GridViewDefinition and set the r
         </syncfusion:GridViewDefinition>
     </syncfusion:SfDataGrid.DetailsViewDefinition>
 </syncfusion:SfDataGrid>
-
-
 ``` 
 
-![DetailsView_DataTable](Images/DetailsView_DataTable.png)
+![DetailsView loaded with DataTable](Images/DetailsViewDataTable.png)
 
 ## Expanding and collapsing the DetailsViewDataGrid programmatically
-SfDataGrid allows you to expand or collapse the DetailsViewDataGrid programmatically in different ways.
+
+`DataGrid` allows you to expand or collapse the [DetailsViewDataGrid](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.DetailsViewDataGrid.html) programmatically in different ways.
 
 ### Expand or collapse all the DetailsViewDataGrid
-You can expand or collapse all the DetailsViewDataGrid programmatically by using [ExpandAllDetailsView](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.SfDataGrid.html#Syncfusion_UI_Xaml_Grid_SfDataGrid_ExpandAllDetailsView) and [CollapseAllDetailsView](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.SfDataGrid.html#Syncfusion_UI_Xaml_Grid_SfDataGrid_CollapseAllDetailsView) methods.
+
+You can expand or collapse all the `DetailsViewDataGrid` programmatically by using [ExpandAllDetailsView](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.SfDataGrid.html#Syncfusion_UI_Xaml_Grid_SfDataGrid_ExpandAllDetailsView) and [CollapseAllDetailsView](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.SfDataGrid.html#Syncfusion_UI_Xaml_Grid_SfDataGrid_CollapseAllDetailsView) methods.
 
 ``` c#
 this.dataGrid.ExpandAllDetailsView();
@@ -185,7 +179,7 @@ this.dataGrid.CollapseDetailsViewAt(0);
 
 For manually defined relation, the properties can be directly set to the [GridViewDefinition.DataGrid](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.GridViewDefinition.html#Syncfusion_UI_Xaml_Grid_GridViewDefinition_DataGrid).
 
-``` Xaml
+``` xml
 <syncfusion:SfDataGrid x:Name="dataGrid"
                        AutoGenerateColumns="True"
                        AutoGenerateRelations="False"
@@ -203,44 +197,37 @@ For manually defined relation, the properties can be directly set to the [GridVi
                 </syncfusion:GridViewDefinition>
             </syncfusion:SfDataGrid.DetailsViewDefinition>
 </syncfusion:SfDataGrid>
-
 ```
 
 ## Defining properties for DetailsViewDataGrid When AutoGenerateRelations is true
 
-When the relation is auto-generated, you can get the GridViewDefinition.DataGrid in the [AutoGeneratingRelations](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.SfDataGrid.html) event handler to set the properties.
+When the relation is auto-generated, you can get the GridViewDefinition.DataGrid in the `AutoGeneratingRelations` event handler to set the properties.
 
 ``` c#
-
 this.dataGrid.AutoGeneratingRelations += dataGrid_AutoGeneratingRelations;
 
 void dataGrid_AutoGeneratingRelations(object sender, Syncfusion.UI.Xaml.Grid.AutoGeneratingRelationsArgs e)
 {
-     e.GridViewDefinition.DataGrid.AllowEditing = true;
-     e.GridViewDefinition.DataGrid.AllowFiltering = true;
-     e.GridViewDefinition.DataGrid.AllowSorting = true;
-     e.GridViewDefinition.DataGrid.AllowResizingColumns = true;        
+    e.GridViewDefinition.DataGrid.AllowEditing = true;
+    e.GridViewDefinition.DataGrid.AllowFiltering = true;
+    e.GridViewDefinition.DataGrid.AllowSorting = true;
+    e.GridViewDefinition.DataGrid.AllowResizingColumns = true;        
 }
-
 ```
 
+## Hiding expander when parent record's relation property has an empty collection or null
 
-## Hiding expander when parent record’s relation property has an empty collection or null
-
-By default, the expander will be visible for all the data rows in parent DataGrid even if its RelationalColumn property has an empty collection or null.
+By default, the expander will be visible for all the data rows in parent DataGrid even if its [RelationalColumn](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.ViewDefinition.html#Syncfusion_UI_Xaml_Grid_ViewDefinition_RelationalColumn) property has an empty collection or null.
 You can hide the expander from the view when corresponding RelationalColumn property has an empty collection or null, by setting [HideEmptyGridViewDefinition](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.SfDataGrid.html#Syncfusion_UI_Xaml_Grid_SfDataGrid_HideEmptyGridViewDefinition) property as true.
 
-``` Xaml
+``` xml
 <syncfusion:SfDataGrid x:Name="dataGrid" 
-                               HideEmptyGridViewDefinition="True"
-                               ItemsSource="{Binding Path=OrdersDetails}">
+                        HideEmptyGridViewDefinition="True"
+                        ItemsSource="{Binding Path=OrdersDetails}">
 ```
 
 
-![DetailsView_HideEmptyGridViewDefinition](Images/DetailsView_HideEmptyGridViewDefinition.png)
-
-KB article - [How to Create WPF Nested DataGrid View (Master Details View) in WPF?](https://www.syncfusion.com/kb/12369/how-to-create-wpf-nested-datagrid-view-master-details-view-in-wpf)
+![DetailsView_HideEmptyGridViewDefinition](Images/DetailsViewHideEmptyGridViewDefinition.png)
 
 ## Requirements to run the demo 
-
 Visual Studio 2015 and above versions.
